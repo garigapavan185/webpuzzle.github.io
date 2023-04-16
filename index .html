@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soft Skills Puzzle Game</title>
+    <link rel="stylesheet" href="body.css">
+</head>
+<body>
+    <header>
+        <h1>Soft Skills Puzzle Game</h1>
+        <nav>
+            <ul>
+                
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                
+                    <ul>
+                        <li><a href="dashboard.html">DashBoard</a></li>
+                        <li><a href="signup1.html">Sign Up</a></li>
+                        <li><a href="login.html">Login</a></li>
+                      
+                    </ul>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="puzzle-container">
+            <!-- Puzzle clues and dead-ends will be added here using JavaScript -->
+        </div>
+        
+        <div id="solution-container">
+            <!-- Final solution will be added here using JavaScript -->
+        </div>
+        
+        <div id="user-data">
+            <!-- User progress data will be added here using JavaScript -->
+        </div>
+        
+        <div id="start-button-container">
+            <button id="start-button">Start Puzzle</button>
+         </div>
+        
+    </main>
+    
+    <footer>
+        <p>© 2023 Soft Skills Puzzle Game</p>
+    </footer>
+    
+    <script>
+        const startButton = document.getElementById("start-button");
+    
+        startButton.addEventListener("click", function() {
+            console.log("Button clicked");
+            window.location.href = "startpage.html";
+        });
+    </script>
+    
+</body>
+</html>

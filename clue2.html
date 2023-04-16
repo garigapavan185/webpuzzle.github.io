@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clue 2</title>
+    <link rel="stylesheet" href="clue1.css">
+  </head>
+  <body>
+    <h1>Clue 2</h1>
+    <p>Watch the video and use the audio editing tool to extract the answer to the next clue.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/fLGT0ZLW5CM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <audio src="clue2_audio.mp3" id="audioPlayer"></audio>
+    <div>
+      <button type="button" id="playButton">Play</button>
+      <button type="button" id="pauseButton">Pause</button>
+      <!-- <button type="button" id="extractPasswordButton">Extract Answer</button> -->
+    </div>
+    <form>
+      <label for="nextClueInput">As per the video what is key to Success.Enter the answer to go to the next clue:</label>
+      <input type="text" id="nextClueInput" name="nextClueInput">
+      <button type="button" id="submitNextClue">Submit</button>
+    </form>
+    <div id="timer"></div>
+    <script>
+      const audioPlayer = document.getElementById("audioPlayer");
+      const playButton = document.getElementById("playButton");
+      const pauseButton = document.getElementById("pauseButton");
+      const extractPasswordButton = document.getElementById("extractPasswordButton");
+      const submitNextClue = document.getElementById("submitNextClue");
+      const timer = document.getElementById("timer");
+      let totalTime = 0;
+      const timeTakenForCurrentClue = 0;
+
+      playButton.addEventListener("click", function() {
+        audioPlayer.play();
+      });
+
+      pauseButton.addEventListener("click", function() {
+        audioPlayer.pause();
+      });
+
+      submitNextClue.addEventListener("click", function() {
+        const nextClueUrl = document.getElementById("nextClueInput").value;
+        if (nextClueUrl.includes("hardwork")){
+          alert("Congratulations! You have found the password.");
+          window.location.href = "clue3.html";
+        }
+       else if (document.getElementById("nextClueInput").value === "clue3.html") {
+            window.location.href = nextClueUrl;
+        } else {
+            window.location.href = "deadend2.html";
+        }
+      });
+
+      // submitNextClue.addEventListener("click", function() {
+      //   const nextClueUrl = document.getElementById("nextClueInput").value;
+      //   // Redirect to the next clue page or dead-end page based on the URL entered by the user
+      //   if (document.getElementById("nextClueInput").value === "clue3.html") {
+      //       window.location.href = nextClueUrl;
+      //   } else {
+      //       window.location.href = "deadend2.html";
+      //   }
+      // });
+
+      const video = document.querySelector("video");
+      video.addEventListener("ended", function() {
+        let timeLeft = 60;
+        const countdown = setInterval(function() {
+          timer.innerHTML = "Time left: " + timeLeft + " seconds";
+          timeLeft--;
+          if (timeLeft < 0) {
+            clearInterval(countdown);
+            timer.innerHTML = "Time's up! Restart the game.";
+            const restartButton = document.createElement("button");
+            restartButton.innerText = "Restart";
+            restartButton.addEventListener("click", function() {
+              window.location.href = "start.html";
+            });
+            document.body.appendChild(restartButton);
+          }
+        }, 1000);
+        totalTime += 60 - timeLeft;
+        localStorage.setItem("totalTime", totalTime);
+      });
+      const prevTime = localStorage.getItem("totalTime");
+      if (prevTime) {
+        totalTime = parseInt(prevTime);
+      }
+
+// add time taken for current clue to total time
+totalTime += timeTakenForCurrentClue;
+
+// save updated total time in localStorage
+localStorage.setItem("totalTime", totalTime);
+
+    </script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clue 3</title>
+    <style>
+      /* Style for the 3D model container */
+      #model-container {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clue 3</h1>
+    <p>Use the tool below to rotate the 3D model for 10 seconds and find the hidden message:</p>
+    <div id="model-container">
+      <!-- Add your 3D model here -->
+      <img src="https://www.teacheracademy.eu/wp-content/uploads/2019/02/The-4Cs-Creativity-Critical-Thinking-Communication-and-Collaboration-in-Schools-725.jpg" alt="Example 3D model" />
+    </div>
+    <p id="message"></p>
+    <script>
+      // Initialize variables
+      let isDragging = false;
+      let startX, startY;
+      let currentX = 0;
+      let currentY = 0;
+      let x = 0;
+      let y = 0;
+
+      // Get the 3D model container and the message element
+      const modelContainer = document.getElementById("model-container");
+      const message = document.getElementById("message");
+
+      // Add event listeners for mouse and touch events
+      modelContainer.addEventListener("mousedown", dragStart);
+      modelContainer.addEventListener("mouseup", dragEnd);
+      modelContainer.addEventListener("mousemove", drag);
+      modelContainer.addEventListener("touchstart", dragStart);
+      modelContainer.addEventListener("touchend", dragEnd);
+      modelContainer.addEventListener("touchmove", drag);
+
+      // Function to handle the start of a drag event
+      function dragStart(e) {
+        startX = e.clientX || e.touches[0].clientX;
+        startY = e.clientY || e.touches[0].clientY;
+        isDragging = true;
+      }
+
+      // Function to handle the end of a drag event
+      function dragEnd(e) {
+        isDragging = false;
+        x += currentX;
+        y += currentY;
+        currentX = 0;
+        currentY = 0;
+      }
+
+      // Function to handle a drag event
+      function drag(e) {
+        if (isDragging) {
+          e.preventDefault();
+          const xDiff = (e.clientX || e.touches[0].clientX) - startX;
+          const yDiff = (e.clientY || e.touches[0].clientY) - startY;
+          currentX = xDiff;
+          currentY = yDiff;
+          modelContainer.style.transform = `rotateX(${y -
+            yDiff}deg) rotateY(${x + xDiff}deg)`;
+        }
+      }
+
+      // Function to reveal the hidden message
+     // Function to reveal the hidden message
+function revealMessage() {
+  // Add the congratulations message
+  message.innerHTML = "Congratulations! You have found the password.";
+  
+  // Add a link to clue 4
+  const link = document.createElement("a");
+  link.href = "clue4.html";
+  const button = document.createElement("button");
+  button.innerHTML = "Go to Clue 4";
+  link.appendChild(button);
+  document.body.appendChild(link);
+}
+
+// Set a timeout to reveal the message after 10 seconds
+setTimeout(revealMessage, 10000);
+const prevTime = localStorage.getItem("totalTime");
+if (prevTime) {
+  totalTime = parseInt(prevTime);
+}
+
+// add time taken for current clue to total time
+// Get the total time taken for Clue 1 and Clue 2
+
+      // Add time taken for Clue 3 to total time
+      const timeTakenForCurrentClue = 0; // replace 0 with actual time taken in seconds
+      totalTime += timeTakenForCurrentClue;
+
+    </script>
+  </body>
+</html>
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    
+    <div class="metrics">
+      <div class="metric">
+        <h2>Time Taken</h2>
+        <p id="time-taken"></p>
+        <p> <span id="total-time"></span> minutes</p>
+      </div>
+      <div class="metric">
+        <h2>Accuracy</h2>
+        <p> 100%</p>
+        <p id="accuracy"></p>
+      </div>
+      <div class="metric">
+        <h2>Soft Skill</h2>
+        <p id="soft-skill"></p>
+        <p> Curiosity</p>
+      </div>
+    </div>
+    <button id="back-to-index">Back to Home</button>
+    <script>
+        const backToIndexButton = document.getElementById("back-to-index");
+     backToIndexButton.addEventListener("click", () => {
+  window.location.href = "startpage.html";
+});
+      // get total time from localStorage
+      const totalTimeMs = localStorage.getItem("totalTime");
+      const totalTimeMins = Math.round(totalTimeMs / 60000);
+      const totalTimeElement = document.getElementById("total-time");
+      totalTimeElement.textContent = `${totalTimeMins} `;
+    </script>
+  </body>
+</html>

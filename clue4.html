@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clue 4</title>
+    <link rel="stylesheet" href="clue4.css">
+    <style>
+      /* Style for the color squares */
+      .square {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        margin: 10px;
+        border: 2px solid black;
+        cursor: pointer;
+      }
+      /* Colors for the squares */
+      #red {
+        background-color: red;
+      }
+      #orange {
+        background-color: orange;
+      }
+      #yellow {
+        background-color: yellow;
+      }
+      #green {
+        background-color: green;
+      }
+      #blue {
+        background-color: blue;
+      }
+      #indigo {
+        background-color: indigo;
+      }
+      #violet {
+        background-color: violet;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clue 4</h1>
+    <p>Click on the squares in the correct order to reveal the password:</p>
+    <div>
+      <!-- Color squares with unique IDs -->
+      <div class="square" id="red"></div>
+      <div class="square" id="orange"></div>
+      <div class="square" id="yellow"></div>
+      <div class="square" id="green"></div>
+      <div class="square" id="blue"></div>
+      <div class="square" id="indigo"></div>
+      <div class="square" id="violet"></div>
+    </div>
+    <script>
+      const timeLimit = 60;
+
+// Initialize variables
+let clickedSquares = [];
+let timeTakenForCurrentClue = 0;
+let timeLeft = timeLimit;
+    
+
+
+// Get start time
+const startTime = new Date().getTime();
+
+// Display the time limit
+const timeLimitParagraph = document.createElement("p");
+const timeLimitText = document.createTextNode(`You have ${timeLimit} seconds to complete this clue.`);
+timeLimitParagraph.appendChild(timeLimitText);
+document.body.appendChild(timeLimitParagraph);
+
+// Display the timer
+const timerParagraph = document.createElement("p");
+const timerText = document.createTextNode(`Time left: ${timeLeft} seconds`);
+timerParagraph.appendChild(timerText);
+document.body.appendChild(timerParagraph);
+
+// Update the timer every second
+const timerInterval = setInterval(() => {
+  timeLeft--;
+  timerText.nodeValue = `Time left: ${timeLeft} seconds`;
+
+  // Check if the time limit is reached
+  if (timeLeft === 0) {
+    clearInterval(timerInterval);
+    alert("Time's up! Please restart.");
+    window.location.href = "index.html";
+  }
+}, 1000);
+
+
+// Get all the squares by their IDs
+const red = document.getElementById("red");
+const orange = document.getElementById("orange");
+const yellow = document.getElementById("yellow");
+const green = document.getElementById("green");
+const blue = document.getElementById("blue");
+const indigo = document.getElementById("indigo");
+const violet = document.getElementById("violet");
+
+// Add click event listeners to each square
+red.addEventListener("click", handleClick);
+orange.addEventListener("click", handleClick);
+yellow.addEventListener("click", handleClick);
+green.addEventListener("click", handleClick);
+blue.addEventListener("click", handleClick);
+indigo.addEventListener("click", handleClick);
+violet.addEventListener("click", handleClick);
+
+// Function to handle a square click event
+function handleClick(e) {
+  const squareId = e.target.id;
+  clickedSquares.push(squareId);
+  checkSquares();
+}
+
+// Function to check if the squares are clicked in the correct order
+function checkSquares() {
+  const correctOrder = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+  const clickedOrder = clickedSquares.slice(-7);
+  if (clickedOrder.join("") === correctOrder.join("")) {
+    // Get end time and calculate time taken
+    const endTime = new Date().getTime();
+    timeTakenForCurrentClue = (endTime - startTime) / 1000;
+
+    // Update total time taken
+    let totalTime = 0;
+    const prevTime1 = localStorage.getItem("timeClue1");
+    const prevTime2 = localStorage.getItem("timeClue2");
+    const prevTime3 = localStorage.getItem("timeClue3");
+    const prevTime4 = localStorage.getItem("timeClue4");
+
+    if (prevTime1) {
+      totalTime += parseFloat(prevTime1);
+    }
+    if (prevTime2) {
+      totalTime += parseFloat(prevTime2);
+    }
+    if (prevTime3) {
+      totalTime += parseFloat(prevTime3);
+    }
+    if (prevTime4) {
+      totalTime += parseFloat(prevTime4);
+    }
+
+    totalTime += timeTakenForCurrentClue;
+
+    // Save updated total time in localStorage
+    localStorage.setItem("timeClue4", timeTakenForCurrentClue.toFixed(2));
+    localStorage.setItem("totalTime", totalTime.toFixed(2));
+
+    // Reveal the password
+    revealPassword();
+  }
+}
+
+// Function to reveal the password
+function revealPassword() {
+  const passwordParagraph = document.createElement("p");
+  const passwordText = document.createTextNode("The password to access the next clue is: softskill");
+  passwordParagraph.appendChild(passwordText);
+  document.body.appendChild(passwordParagraph);
+
+  const nextPageLink = document.createElement("a");
+  const nextPageText = document.createTextNode("Next Page");
+  nextPageLink.appendChild(nextPageText);
+  nextPageLink.title = "Next Page";
+  nextPageLink.href = "passwordcheck.html";
+  document.body.appendChild(nextPageLink);
+}
+
+    </script>
+  </body>
+</html>
+
+

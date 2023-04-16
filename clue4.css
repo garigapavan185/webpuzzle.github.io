@@ -1,0 +1,45 @@
+/* Style for the color squares */
+.square {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  
+  
+  /* Colors for the squares */
+  #red {
+    background-color: #FF4136;
+  }
+  #orange {
+    background-color: #FF851B;
+  }
+  #yellow {
+    background-color: #FFDC00;
+  }
+  #green {
+    background-color: #2ECC40;
+  }
+  #blue {
+    background-color: #0074D9;
+  }
+  #indigo {
+    background-color: #4B0082;
+  }
+  #violet {
+    background-color: #B10DC9;
+  }
+  
+  /* Hover effect for the color squares */
+  .square:hover {
+    transform: scale(1.1); /* Enlarges the square on hover */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Increases the size of the drop shadow */
+  }
+  
+  /* Active effect for the color squares */
+  .square:active {
+    transform: scale(0.9); /* Shrinks the square on click */
+  }

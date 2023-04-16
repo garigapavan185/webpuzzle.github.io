@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deadend 1</title>
+  </head>
+  <body>
+    <h1>Deadend 1</h1>
+    <p>You've reached a dead end. Please restart from the beginning.</p>
+    <button type="button" id="restartButton">Restart</button>
+    <script>
+      const restartButton = document.getElementById("restartButton");
+      
+      restartButton.addEventListener("click", function() {
+        // Redirect to the start page
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>

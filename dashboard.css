@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .metrics {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px auto;
+    width: 80%;
+  }
+  
+  .metric {
+    text-align: center;
+  }
+  
+  .metric h2 {
+    font-size: 24px;
+  }
+  
+  .metric p {
+    font-size: 48px;
+    margin-top: 20px;
+  }
+  
+  #back-to-index {
+    display: block;
+    margin: 50px auto;
+  }
+  

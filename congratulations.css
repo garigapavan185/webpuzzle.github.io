@@ -1,0 +1,38 @@
+/* Set body background color */
+body {
+    background-color: #f2f2f2;
+  }
+  
+  /* Center align the title */
+  h1 {
+    text-align: center;
+  }
+  
+  /* Style the message paragraphs */
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  /* Style the total time element */
+  #total-time {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Add padding and border to the total time element */
+  #total-time {
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 20px 0;
+  }
+  
+  /* Center align the total time element */
+  #total-time {
+    text-align: center;
+  }
+  

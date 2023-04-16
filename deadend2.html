@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dead-End 1</title>
+  </head>
+  <body>
+    <h1>Dead-End 1</h1>
+    <p>Sorry, you've reached a dead-end.</p>
+    <button type="button" id="backButton">Back</button>
+    <script>
+      const backButton = document.getElementById("backButton");
+      
+      backButton.addEventListener("click", function() {
+        // Go back to the previous clue page
+        window.history.back();
+      });
+    </script>
+  </body>
+</html>
